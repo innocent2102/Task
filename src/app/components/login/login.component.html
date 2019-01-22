@@ -1,3 +1,28 @@
-<p>
-  login works!
-</p>
+<div class="main-container" fxLayout="row" fxLayoutAlign="center center" >
+  <mat-card class="login-card" fxFlex="400px">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form #loginForm="ngForm">
+        <table cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field >
+                <input matInput ngModel placeholder="Username" name="username" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td><mat-form-field>
+              <input matInput ngModel placeholder="Password" type="password" name="password" required>
+            </mat-form-field></td>
+          </tr></table>
+      </form>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" [disabled]="!loginForm.valid" (click)="onSubmit(loginForm)" mat-raised-button color="primary">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
