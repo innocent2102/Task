@@ -1,12 +1,9 @@
 <!--[@.disabled]="true"-->
+<!--Navigation menu-->
 <mat-tab-group [color]="'primary'" [backgroundColor]="'primary'">
-  <mat-tab label="Login">
-    <app-login></app-login></mat-tab>
-  <mat-tab label="Dashboard">
-    <app-dashboard></app-dashboard>
-  </mat-tab>
-  <mat-tab label="Third">
-    <app-configuration></app-configuration>
-  </mat-tab>
+  <mat-tab label="Login"><app-login></app-login></mat-tab>
+  <mat-tab style="height: 1000px" label="Dashboard"> <app-dashboard></app-dashboard></mat-tab>
+  <mat-tab label="Configuration"> <app-configuration></app-configuration> </mat-tab>
 </mat-tab-group>
+
 <router-outlet></router-outlet>
