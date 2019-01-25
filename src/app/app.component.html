@@ -1,9 +1,17 @@
 <!--[@.disabled]="true"-->
 <!--Navigation menu-->
-<mat-tab-group [color]="'primary'" [backgroundColor]="'primary'">
-  <mat-tab label="Login"><app-login></app-login></mat-tab>
-  <mat-tab style="height: 1000px" label="Dashboard"> <app-dashboard></app-dashboard></mat-tab>
-  <mat-tab label="Configuration"> <app-configuration></app-configuration> </mat-tab>
-</mat-tab-group>
+<!--<mat-tab-group [color]="'primary'" [backgroundColor]="'primary'">-->
+  <!--<mat-tab class="login-tab" label="Login"><app-login></app-login></mat-tab>-->
+  <!--<mat-tab label="Dashboard"> <app-dashboard></app-dashboard></mat-tab>-->
+  <!--<mat-tab label="Configuration"> <app-configuration></app-configuration> </mat-tab>-->
+<!--</mat-tab-group>-->
 
-<router-outlet></router-outlet>
+<div class="header-section">
+  <div class="item-list">
+    <div class="item"><a [routerLink]="['/dashboard']">Dashboard</a></div>
+    <div class="item"><a [routerLink]="['/configuration']">Configuration</a></div>
+    <div class="item"><a [routerLink]="['/login']">Login</a></div>
+  </div>
+</div>
+  <router-outlet></router-outlet>
+

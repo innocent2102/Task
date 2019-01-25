@@ -1,11 +1,59 @@
-main-container{
-}
+@import '../../../styles';
 
+.main-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .login-card{
   margin: 15px;
   padding: 30px;
 }
 
+.mat-card{
+  height: 300px;
+  width: 300px;
+}
 mat-form-field, table {
   width: 100%;
+}
+.home{
+  width: 50px;
+  height: 50px;
+}
+mat-card-header{
+  display: flex;
+  justify-content: center;
+}
+.sign-in-title{
+  position: relative;
+  bottom: 42px;
+  div{
+    text-align: center;
+    width: 200px;
+    padding: 10px;
+    background-color: $primary-background-color;
+    color: $primary-font-color;
+    border-radius: 3px;
+  }
+}
+
+form{
+  justify-content: center;
+}
+
+mat-card-actions{
+  display: flex;
+  margin-top: 40px;
+  button{
+    width: 80%;
+  }
+}
+
+.user-icon{
+  color: $primary-background-color;
+  text-align: center;
+  position: relative;
+  bottom: 10px;
 }

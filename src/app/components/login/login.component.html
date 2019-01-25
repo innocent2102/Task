@@ -1,34 +1,42 @@
-<div class="main-container" fxLayout="row" fxLayoutAlign="center center" >
-  <mat-card class="login-card" fxFlex="400px">
+<button (click)="test()">Test</button>
+<div class="main-container">
+  <mat-card class="login-card">
 
     <!--Header-->
     <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
+      <mat-card-title class="sign-in-title">
+        <div>SIGN IN</div>
+      </mat-card-title>
+      <mat-card-title class="user-icon">
+        <i class="fas fa-user-alt fa-2x"></i>
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
 
       <!--Form-->
-      <form #loginForm="ngForm">
-        <table cellspacing="0">
+      <form [formGroup]="loginForm">
+        <table cellspacing="0" fxFlex="80">
           <tr>
             <td>
-              <mat-form-field >
-                <input matInput ngModel placeholder="Username" name="username" required>
+              <mat-form-field fxFlex="100">
+                <input matInput formControlName="username" placeholder="Username" name="username" required>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td><mat-form-field>
-              <input matInput ngModel placeholder="Password" type="password" name="password" required>
+              <input matInput formControlName="password" placeholder="Password" type="password" name="password" required>
             </mat-form-field></td>
           </tr></table>
+
       </form>
-      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      <!--<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>-->
     </mat-card-content>
 
     <!--Submit section-->
-    <mat-card-actions>
-      <button type="submit" [disabled]="!loginForm.valid" (click)="loginCredentialsValidator(loginForm)" mat-raised-button color="primary">Login</button>
+    <mat-card-actions class="justify-content-center">
+      <!--<button type="submit" [disabled]="!loginForm.valid" (click)="loginCredentialsValidator(loginForm)" mat-raised-button color="primary">Login</button>-->
+      <button type="submit"  [disabled]="!loginForm.valid" (click)="onSubmit()" mat-raised-button color="primary">Login</button>
     </mat-card-actions>
   </mat-card>
 </div>
