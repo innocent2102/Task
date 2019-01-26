@@ -1,4 +1,3 @@
-<button (click)="test()">Test</button>
 <div class="main-container">
   <mat-card class="login-card">
 
@@ -6,6 +5,11 @@
     <mat-card-header>
       <mat-card-title class="sign-in-title">
         <div>SIGN IN</div>
+      </mat-card-title>
+      <mat-card-title>
+        <span *ngIf="submitted && response === responseType.CREDENTIALS_INVALID" class="response-error">
+          Username or password is incorrect
+        </span>
       </mat-card-title>
       <mat-card-title class="user-icon">
         <i class="fas fa-user-alt fa-2x"></i>
@@ -28,14 +32,13 @@
               <input matInput formControlName="password" placeholder="Password" type="password" name="password" required>
             </mat-form-field></td>
           </tr></table>
-
       </form>
-      <!--<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>-->
+
     </mat-card-content>
 
     <!--Submit section-->
     <mat-card-actions class="justify-content-center">
-      <!--<button type="submit" [disabled]="!loginForm.valid" (click)="loginCredentialsValidator(loginForm)" mat-raised-button color="primary">Login</button>-->
+      <mat-spinner [style.display]="loading ? 'block' : 'none'"></mat-spinner>
       <button type="submit"  [disabled]="!loginForm.valid" (click)="onSubmit()" mat-raised-button color="primary">Login</button>
     </mat-card-actions>
   </mat-card>

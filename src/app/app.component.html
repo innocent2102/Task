@@ -1,17 +1,29 @@
-<!--[@.disabled]="true"-->
-<!--Navigation menu-->
-<!--<mat-tab-group [color]="'primary'" [backgroundColor]="'primary'">-->
-  <!--<mat-tab class="login-tab" label="Login"><app-login></app-login></mat-tab>-->
-  <!--<mat-tab label="Dashboard"> <app-dashboard></app-dashboard></mat-tab>-->
-  <!--<mat-tab label="Configuration"> <app-configuration></app-configuration> </mat-tab>-->
-<!--</mat-tab-group>-->
+<section>
+  <header>
+    <div class="item-list">
+      <a class="item" [routerLink]="['/dashboard']">Dashboard</a>
+      <a class="item" [routerLink]="['/configuration']">Configuration</a>
+    </div>
+  </header>
 
-<div class="header-section">
-  <div class="item-list">
-    <div class="item"><a [routerLink]="['/dashboard']">Dashboard</a></div>
-    <div class="item"><a [routerLink]="['/configuration']">Configuration</a></div>
-    <div class="item"><a [routerLink]="['/login']">Login</a></div>
+  <div class="main-container">
+    <div class="side-menu">
+      <mat-expansion-panel #matExpansionPanel mat-elevtion-z2 [hideToggle]="item.children.length === 0" *ngFor="let item of menuItems">
+        <!--TODO: 2 the same functions, solve in different way-->
+        <mat-expansion-panel-header (click)="[expandPanel(matExpansionPanel, item), showLinkInfo(item, subItem)]" >
+          <mat-panel-title color="primary">
+            {{item.name}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p *ngFor="let subItem of item.children" (click)="showLinkInfo(item, subItem)">{{subItem.name}}</p>
+      </mat-expansion-panel>
+    </div>
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</div>
-  <router-outlet></router-outlet>
+</section>
+
+
+
 
