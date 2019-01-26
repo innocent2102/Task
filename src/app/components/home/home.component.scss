@@ -1,0 +1,67 @@
+@import "../../../styles";
+
+// Box shadow horizontal length
+$bshl: -1px;
+$side-menu-color: #777;
+
+section{
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+header{
+  background-color: $primary-background-color;
+  display: flex;
+  justify-content: flex-end;
+  .item-list{
+    display: flex;
+  }
+}
+
+.main-container{
+  display: flex;
+  flex-grow: 1;
+}
+
+.side-menu{
+  min-width: 200px;
+  width: 200px;
+  box-shadow: 0 0 1px -2px rgba(0,0,0,.2), 0 0 2px 0 rgba(0,0,0,.14), 0 0 5px 0 rgba(0,0,0,.12);
+}
+
+.item{
+  padding: 20px;
+  &:hover{
+    color: white;
+  }
+}
+
+a{
+  text-decoration: none;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  color: $primary-font-color;
+}
+
+.mat-expansion-panel[_ngcontent-c1]:not([class*=mat-elevation-z]) {
+  box-shadow: $bshl 0 1px -2px rgba(0, 0, 0, 0.2), $bshl 0 2px 0 rgba(0, 0, 0, 0.14), $bshl 0 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.mat-expansion-panel-header-title{
+  color: $side-menu-color;
+}
+
+.mat-expansion-panel{
+  p{
+    cursor: pointer;
+    padding: 10px;
+    color: $side-menu-color;
+    &:hover{
+      color: darken($side-menu-color, 30);
+    }
+  }
+}
+
+.content-area{
+  flex-grow: 6;
+}

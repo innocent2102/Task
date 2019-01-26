@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         this.submitted = true;
         this.response = data;
         if (this.response === this.responseType.CREDENTIALS_VALID) {
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/home/dashboard');
         }
       });
   }
