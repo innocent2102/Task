@@ -1,1 +1,10 @@
-<h1>Dashboard</h1>
+<mat-accordion>
+  <mat-expansion-panel cdkDrag #matExpansionPanel style="width: 300px">
+    <mat-expansion-panel-header (click)="expandPanel(matExpansionPanel, $event)">
+      <mat-panel-title>Title</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-panel-description>
+      Description
+    </mat-panel-description>
+  </mat-expansion-panel>
+</mat-accordion>
