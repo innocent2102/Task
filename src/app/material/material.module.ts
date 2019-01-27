@@ -18,6 +18,8 @@ import {
   MatMenuModule,
   MatTreeModule,
   MatExpansionModule,
+  MatOptionModule,
+  MatSelectModule,
   MatCheckboxModule, } from '@angular/material';
 
 @NgModule({
@@ -37,6 +39,8 @@ import {
     MatMenuModule,
     MatTreeModule,
     MatExpansionModule,
+    MatOptionModule,
+    MatSelectModule,
     DragDropModule
   ],
   exports: [
@@ -55,7 +59,9 @@ import {
     MatMenuModule,
     MatTreeModule,
     MatExpansionModule,
+    MatOptionModule,
     DragDropModule,
+    MatSelectModule,
     MatInputModule]
 })
 export class MaterialModule { }

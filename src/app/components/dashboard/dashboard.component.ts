@@ -17,13 +17,14 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  constructor() { }
+
+  ngOnInit() { }
+
   private _isExpansionIndicator(target: EventTarget): boolean {
     const expansionIndicatorClass = 'mat-expansion-indicator';
     return (target.classList && target.classList.contains(expansionIndicatorClass) );
   }
-  constructor() { }
-
-  ngOnInit() { }
 
 }
 

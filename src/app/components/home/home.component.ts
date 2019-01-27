@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   DataHelper = DataHelper;
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 
+  // TODO: move this to service
   menuItems = [{
     name: 'Dashboard',
     children: []
@@ -49,7 +50,8 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.navigateByUrl('/home/dashboard');
+    // TODO: this probably trigger problem with page refreshing end redirecting
+    //this.router.navigateByUrl('/home/dashboard');
   }
 
 

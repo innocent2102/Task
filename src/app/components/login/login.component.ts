@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LoginService} from '../../services/login.service';
+import {LoginService} from '../../services/login/login.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResponseType} from '../../enums/response-type.enum';
 
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
     });
 
   }
-
 
   onSubmit() {
     this.submitted = true;
