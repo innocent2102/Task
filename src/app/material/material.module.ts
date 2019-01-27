@@ -20,6 +20,7 @@ import {
   MatExpansionModule,
   MatOptionModule,
   MatSelectModule,
+  MatTooltipModule,
   MatCheckboxModule, } from '@angular/material';
 
 @NgModule({
@@ -41,6 +42,7 @@ import {
     MatExpansionModule,
     MatOptionModule,
     MatSelectModule,
+    MatTooltipModule,
     DragDropModule
   ],
   exports: [
@@ -62,6 +64,7 @@ import {
     MatOptionModule,
     DragDropModule,
     MatSelectModule,
+    MatTooltipModule,
     MatInputModule]
 })
 export class MaterialModule { }

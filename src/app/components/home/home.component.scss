@@ -65,3 +65,39 @@ a{
 .content-area{
   flex-grow: 6;
 }
+
+.notification-area{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+  div{
+    display: flex;
+    align-items: center;
+  }
+  //button{
+  //  margin-right: 10px;
+  //  background: white;
+  //}
+  mat-icon{
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+}
+
+.error{
+  color: darken(red, 10);
+  font-weight: 600;
+}
+
+.warning{
+  color: darken(orange, 10);
+  font-weight: 600;
+}
+
+.info{
+  color: lightskyblue;
+  font-weight: 600;
+}
+

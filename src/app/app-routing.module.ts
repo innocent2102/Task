@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ConfigurationComponent } from './components/configuration/configuration.component';
+import { DashboardComponent } from './components/home/dashboard/dashboard.component';
+import { ConfigurationComponent } from './components/home/configuration/configuration.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 

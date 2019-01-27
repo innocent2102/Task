@@ -41,7 +41,7 @@
     <!--Submit section-->
     <mat-card-actions class="justify-content-center">
       <mat-spinner [style.display]="loading ? 'block' : 'none'"></mat-spinner>
-      <button type="submit"  [disabled]="!loginForm.valid" (click)="onSubmit()" mat-raised-button color="primary">Login</button>
+      <button type="submit" class="submit" [disabled]="!loginForm.valid" (click)="onSubmit()" mat-raised-button>Login</button>
     </mat-card-actions>
   </mat-card>
 </div>

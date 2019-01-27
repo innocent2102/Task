@@ -1,0 +1,28 @@
+<div class="main-container">
+  <section>
+    <h4>Language</h4>
+    <mat-form-field>
+      <mat-select placeholder="Language...">
+        <ng-container *ngFor="let language of languagesArr" >
+          <mat-option (onSelectionChange)="onLanguageSelectionChange(language, $event)" value="language.name" [disabled]="getLanguageNameValid(language)">
+            {{language.name}}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="saveLanguage(language.name)" mat-raised-button>Save</button>
+  </section>
+  <section>
+    <h4>Notification</h4>
+    <mat-form-field>
+      <mat-select placeholder="Notification..." [formControl]="toppings" multiple>
+        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button>Save</button>
+  </section>
+  <section>
+<!--<button mat-raised-button (click)="test(topping)" [disabled]="toppings.value === null">Test</button>-->
+    <button mat-raised-button (click)="test(topping)" >Test</button>
+  </section>
+</div>
