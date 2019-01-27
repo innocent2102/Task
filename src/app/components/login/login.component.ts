@@ -16,6 +16,11 @@ export class LoginComponent implements OnInit {
   loading = false;
   responseType: any;
   response: ResponseType;
+  connectionFailed = false;
+
+  get formControls() {
+    return this.loginForm.controls;
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,9 +38,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  get formControls() {
-    return this.loginForm.controls;
-  }
 
   onSubmit() {
     this.submitted = true;
@@ -48,14 +50,17 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.loginService.login(this.formControls.username.value, this.formControls.password.value)
       .subscribe(data => {
+        this.connectionFailed = false;
         this.loading = false;
         this.submitted = true;
         this.response = data;
         if (this.response === this.responseType.CREDENTIALS_VALID) {
           this.router.navigateByUrl('/home/dashboard');
         }
+      }, error => {
+        this.loading = false;
+        this.connectionFailed = true;
       });
   }
-
 
 }

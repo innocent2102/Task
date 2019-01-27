@@ -7,8 +7,11 @@
         <div>SIGN IN</div>
       </mat-card-title>
       <mat-card-title>
-        <span *ngIf="submitted && response === responseType.CREDENTIALS_INVALID" class="response-error">
+        <span *ngIf="submitted && response === responseType.CREDENTIALS_INVALID && !connectionFailed" class="response-error">
           Username or password is incorrect
+        </span>
+        <span *ngIf="connectionFailed" class="response-error">
+          Connection to database failed
         </span>
       </mat-card-title>
       <mat-card-title class="user-icon">
@@ -33,7 +36,6 @@
             </mat-form-field></td>
           </tr></table>
       </form>
-
     </mat-card-content>
 
     <!--Submit section-->
