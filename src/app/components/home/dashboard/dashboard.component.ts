@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MatExpansionPanel} from '@angular/material';
+import {BaseComponent} from '../base.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,7 @@ import {MatExpansionPanel} from '@angular/material';
   styleUrls: ['./dashboard.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends BaseComponent  implements OnInit {
 
   expandPanel(matExpansionPanel: MatExpansionPanel, event: Event) {
     event.stopPropagation();
@@ -17,7 +18,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit() { }
 

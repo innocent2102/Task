@@ -3,7 +3,7 @@
     <div class="notification-area">
       <div [ngClass]="notification.type" *ngIf="notificationEnabled" >
         <mat-icon aria-placeholder="dismiss" (click)="toggleNotifications()" matTooltip="Toggle notification">notifications_active</mat-icon>
-        <span>{{notification.type}}: {{notification.message}} - {{notification.date}}</span>
+        <span *ngIf="notification.show">{{notification.type}}: {{notification.message}} - {{notification.date}}</span>
       </div>
       <div *ngIf="!notificationEnabled" >
         <mat-icon aria-placeholder="dismiss" (click)="toggleNotifications()" matTooltip="Toggle notification">notifications_none</mat-icon>

@@ -39,9 +39,10 @@ export class HomeService {
   ];
 
   notifications = [
-    {type: 'error', message: 'This is error message', date: '2019-01-01'},
-    {type: 'warning', message: 'This is warning message', date: '2019-01-02'},
-    {type: 'info', message: 'This is info message', date: '2019-01-03'}];
+    {id: 0, type: 'error', message: 'This is error message', date: '2019-01-01', show: true},
+    {id: 1, type: 'warning', message: 'This is warning message', date: '2019-01-02', show: true},
+    {id: 2, type: 'info', message: 'This is info message', date: '2019-01-03', show: true
+  }];
 
   constructor() { }
 

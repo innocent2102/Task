@@ -4,7 +4,7 @@
     <mat-form-field>
       <mat-select placeholder="Language...">
         <ng-container *ngFor="let language of languagesArr" >
-          <mat-option (onSelectionChange)="onLanguageSelectionChange(language, $event)" value="language.name" [disabled]="getLanguageNameValid(language)">
+          <mat-option (onSelectionChange)="onLanguageSelectionChange(language, $event)" [value]="language.name" [disabled]="getLanguageNameValid(language)">
             {{language.name}}
           </mat-option>
         </ng-container>
@@ -15,14 +15,13 @@
   <section>
     <h4>Notification</h4>
     <mat-form-field>
-      <mat-select placeholder="Notification..." [formControl]="toppings" multiple>
-        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+      <mat-select #f placeholder="Notification..." multiple [formControl]="notificationsFormControl">
+        <mat-option *ngFor="let notification of notifications" [value]="notification">{{notification.type}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button>Save</button>
+    <button [disabled]="!DataHelper.hasAnyElement(notificationsFormControl.value)" mat-raised-button (click)="saveNotificationTypes()">Save</button>
   </section>
   <section>
-<!--<button mat-raised-button (click)="test(topping)" [disabled]="toppings.value === null">Test</button>-->
-    <button mat-raised-button (click)="test(topping)" >Test</button>
+    <button mat-raised-button (click)="test(f)" >Test</button>
   </section>
 </div>

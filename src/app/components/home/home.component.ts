@@ -2,24 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import {DataHelper} from '../../helpers/DataHelper';
 import {Router} from '@angular/router';
 import {HomeService} from '../../services/home/home.service';
+import {BaseComponent} from './base.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends BaseComponent implements OnInit {
 
   content = '';
-  DataHelper = DataHelper;
   menuItems: any;
   //TODO: should provide interface
   notifications: any;
-  notification = {type: 'info', message: 'This is info text', date: '2019-02-04'};
+  notification = {type: 'info', message: 'This is info text', date: '2019-02-04', show: true};
   notificationEnabled = true;
   timer: any;
 
-  constructor(private router: Router, private homeService: HomeService) { }
+  constructor(private router: Router, private homeService: HomeService) {
+    super();
+  }
 
   ngOnInit() {
     this.menuItems = this.homeService.getMenuItems();
@@ -54,10 +56,11 @@ export class HomeComponent implements OnInit {
   }
 
   enableNotification() {
+    const ONE_SECOND = 1000;
     this.disableNotification();
     this.timer = setInterval(item => {
       this.getRandomNotification();
-    }, this.getRandomNumber(1, 2) * 1000);
+    }, this.getRandomNumber(5, 10) * ONE_SECOND);
 
   }
 

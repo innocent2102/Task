@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { LanguageService } from '../../../services/language/language.service';
 import { Language } from '../../../models/language';
+import { HomeService } from '../../../services/home/home.service';
+import { BaseComponent } from '../base.component';
 import { FormControl } from '@angular/forms';
 
 
@@ -10,29 +12,35 @@ import { FormControl } from '@angular/forms';
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss']
 })
-export class ConfigurationComponent implements OnInit {
+export class ConfigurationComponent extends BaseComponent implements OnInit {
 
   languagesObject: any;
   languagesObjectProps: any;
   languagesArr = [];
-  toppings = new FormControl();
-  toppingList: string[] = ['Email', 'Mobile', 'Text'];
+  notificationsFormControl = new FormControl();
+  notifications: any;
   selectedLanguage: Language;
   language: Language;
 
-  constructor(private languageService: LanguageService) { }
+  constructor(private languageService: LanguageService, private homeService: HomeService) {
+    super();
+  }
 
   ngOnInit() {
     this.language = {name: 'English', nativeName: 'English'};
-    this.selectedLanguage = {name: '', nativeName: ''};
     this.languagesObject  = this.languageService.getLanguages().default;
+    this.convertLanguagesObjectToArray();
+    this.notifications = this.homeService.getNotifications();
+  }
+
+  convertLanguagesObjectToArray() {
     this.languagesObjectProps = Object.keys(this.languagesObject);
     for (const prop of this.languagesObjectProps) {
       this.languagesArr.push(this.languagesObject[prop]);
     }
   }
 
-  getLanguageNameValid(language: Language): boolean {
+  getLanguageNameValid(language): boolean {
     const regExp = new RegExp(/[^a-zA-Z]/, 'gm');
     return language.nativeName.match(regExp) !== null;
   }
@@ -43,11 +51,22 @@ export class ConfigurationComponent implements OnInit {
 
   saveLanguage() {
     this.language = Object.assign({}, this.selectedLanguage);
-
   }
 
-  test(fomr) {
-    console.log(this.language.name);
+  disactivateNotifications() {
+    this.notifications.forEach(notification => {
+      notification.show = false;
+    });
   }
 
+  activateNotifications() {
+    this.notificationsFormControl.value.forEach(item => {
+      this.notifications[item.id].show = true;
+    });
+  }
+
+  saveNotificationTypes() {
+    this.disactivateNotifications();
+    this.activateNotifications();
+  }
 }
