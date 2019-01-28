@@ -20,7 +20,6 @@
     <span>{{text}}</span>
     <div class="side-menu">
       <mat-expansion-panel #matExpansionPanel mat-elevtion-z2 [hideToggle]="item.children.length === 0" *ngFor="let item of menuItems">
-        <!--TODO: 2 the same functions, solve in different way-->
         <mat-expansion-panel-header (click)="[expandPanel(matExpansionPanel, item), showLinkInfo(item, subItem)]" >
           <mat-panel-title color="primary">
             {{item.name}}

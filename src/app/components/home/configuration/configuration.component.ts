@@ -4,8 +4,7 @@ import { LanguageService } from '../../../services/language/language.service';
 import { Language } from '../../../models/language';
 import { HomeService } from '../../../services/home/home.service';
 import { BaseComponent } from '../base.component';
-import { FormControl } from '@angular/forms';
-
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-configuration',
@@ -21,8 +20,12 @@ export class ConfigurationComponent extends BaseComponent implements OnInit {
   notifications: any;
   selectedLanguage: Language;
   language: Language;
+  emailForm: FormGroup;
+  email: string;
 
-  constructor(private languageService: LanguageService, private homeService: HomeService) {
+  constructor(private languageService: LanguageService,
+              private formBuilder: FormBuilder,
+              private homeService: HomeService) {
     super();
   }
 
@@ -31,6 +34,9 @@ export class ConfigurationComponent extends BaseComponent implements OnInit {
     this.languagesObject  = this.languageService.getLanguages().default;
     this.convertLanguagesObjectToArray();
     this.notifications = this.homeService.getNotifications();
+    this.emailForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]],
+    });
   }
 
   convertLanguagesObjectToArray() {
@@ -40,12 +46,12 @@ export class ConfigurationComponent extends BaseComponent implements OnInit {
     }
   }
 
-  getLanguageNameValid(language): boolean {
+  getLanguageNameValid(language: Language): boolean {
     const regExp = new RegExp(/[^a-zA-Z]/, 'gm');
     return language.nativeName.match(regExp) !== null;
   }
 
-  onLanguageSelectionChange(language, event) {
+  onLanguageSelectionChange(language: Language, event) {
     this.selectedLanguage = event.isUserInput ? Object.assign({}, language) : this.selectedLanguage;
   }
 
@@ -69,4 +75,9 @@ export class ConfigurationComponent extends BaseComponent implements OnInit {
     this.disactivateNotifications();
     this.activateNotifications();
   }
+
+  saveEmail() {
+    this.email = this.emailForm.value.email;
+  }
+
 }

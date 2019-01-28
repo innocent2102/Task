@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+
 import {MatExpansionPanel} from '@angular/material';
 import {BaseComponent} from '../base.component';
+import { HomeService } from '../../../services/home/home.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +12,18 @@ import {BaseComponent} from '../base.component';
 })
 export class DashboardComponent extends BaseComponent  implements OnInit {
 
+  content: string;
+
+  constructor(private homeService: HomeService) {
+    super();
+  }
+
+  ngOnInit() {
+    this.homeService.currentContent.subscribe(res => {
+      this.content = res;
+    });
+  }
+
   expandPanel(matExpansionPanel: MatExpansionPanel, event: Event) {
     event.stopPropagation();
 
@@ -18,13 +32,7 @@ export class DashboardComponent extends BaseComponent  implements OnInit {
     }
   }
 
-  constructor() {
-    super();
-  }
-
-  ngOnInit() { }
-
-  private _isExpansionIndicator(target: EventTarget): boolean {
+  private _isExpansionIndicator(target): boolean {
     const expansionIndicatorClass = 'mat-expansion-indicator';
     return (target.classList && target.classList.contains(expansionIndicatorClass) );
   }

@@ -10,7 +10,7 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
-    <button (click)="saveLanguage(language.name)" mat-raised-button>Save</button>
+    <button (click)="saveLanguage(language.name)" mat-raised-button [disabled]="!selectedLanguage">Save</button>
   </section>
   <section>
     <h4>Notification</h4>
@@ -22,6 +22,14 @@
     <button [disabled]="!DataHelper.hasAnyElement(notificationsFormControl.value)" mat-raised-button (click)="saveNotificationTypes()">Save</button>
   </section>
   <section>
-    <button mat-raised-button (click)="test(f)" >Test</button>
+    <form [formGroup]="emailForm">
+      <table>
+        <h4>Notification</h4>
+        <mat-form-field>
+          <input matInput formControlName="email" name="email" placeholder="email">
+        </mat-form-field>
+        <button mat-raised-button [disabled]="!emailForm.valid" (click)="saveEmail()">Save</button>
+      </table>
+    </form>
   </section>
 </div>

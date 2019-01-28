@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {HomeService} from '../../services/home/home.service';
 import {BaseComponent} from './base.component';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,14 +12,12 @@ import {BaseComponent} from './base.component';
 })
 export class HomeComponent extends BaseComponent implements OnInit {
 
-  content = '';
+  content: string;
   menuItems: any;
-  //TODO: should provide interface
   notifications: any;
   notification = {type: 'info', message: 'This is info text', date: '2019-02-04', show: true};
   notificationEnabled = true;
   timer: any;
-
   constructor(private router: Router, private homeService: HomeService) {
     super();
   }
@@ -27,7 +26,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.menuItems = this.homeService.getMenuItems();
     this.notifications = this.homeService.getNotifications();
     this.enableNotification();
-    // TODO: this probably trigger problem with page refreshing end redirecting
+    this.homeService.currentContent.subscribe(res => {
+      this.content = res;
+    });
     this.router.navigateByUrl('/home/dashboard');
   }
 
@@ -38,9 +39,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   showLinkInfo(item, subItem) {
     if (item.children.length > 0 && DataHelper.hasValue(subItem)) {
-      this.content = item.name + ' ' +  subItem.name;
+      this.homeService.changeContent(item.name + ' ' +  subItem.name);
     } else {
-      this.content = item.name;
+      this.homeService.changeContent(item.name);
     }
   }
 
@@ -60,7 +61,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.disableNotification();
     this.timer = setInterval(item => {
       this.getRandomNotification();
-    }, this.getRandomNumber(5, 10) * ONE_SECOND);
+    }, this.getRandomNumber(1, 2) * ONE_SECOND);
 
   }
 

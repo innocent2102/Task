@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import {BehaviorSubject} from 'rxjs';;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,6 +46,9 @@ export class HomeService {
     {id: 2, type: 'info', message: 'This is info message', date: '2019-01-03', show: true
   }];
 
+  private content = new BehaviorSubject<string>('');
+  currentContent = this.content.asObservable();
+
   constructor() { }
 
   getMenuItems() {
@@ -52,5 +57,9 @@ export class HomeService {
 
   getNotifications() {
     return this.notifications;
+  }
+
+  changeContent(message: string) {
+    this.content.next(message);
   }
 }

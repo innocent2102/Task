@@ -8,8 +8,6 @@ export class BaseComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
 }
